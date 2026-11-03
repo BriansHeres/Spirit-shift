@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cl0ci1g57b8s5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g4v7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=589681334]
+physics_material_override = SubResource("PhysicsMaterial_g4v7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=621560837]
+scale = Vector2(2, 1)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=720943693]
+modulate = Color(1, 0.06666667, 0.11372549, 1)
+position = Vector2(1.1324883e-06, 0)
+scale = Vector2(40.000004, 20)
+mesh = SubResource("BoxMesh_g4v7s")

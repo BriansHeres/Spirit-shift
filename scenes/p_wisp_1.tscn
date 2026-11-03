@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bqoh4vgpy45bg"]
+
+[ext_resource type="Script" uid="uid://b4m16phh304jx" path="res://scripts/p_wisp_1.gd" id="1_27xi6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[node name="p-wisp-1" type="CharacterBody2D" unique_id=248650386]
+script = ExtResource("1_27xi6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1172044423]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=42033411]
+modulate = Color(0.84313726, 0.43529412, 1, 0.09803922)
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_g4v7s")

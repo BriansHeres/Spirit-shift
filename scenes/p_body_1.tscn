@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://si75wk503pqq"]
+
+[ext_resource type="Script" uid="uid://c0vp5ownbqyyt" path="res://scripts/p_body_1.gd" id="1_nk0nt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[node name="p-body-1" type="CharacterBody2D" unique_id=2086028748]
+script = ExtResource("1_nk0nt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1962522858]
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1677371399]
+position = Vector2(-7.152556e-07, 1.1324883e-06)
+scale = Vector2(19.999998, 40.000004)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=169041210]
