@@ -42,12 +42,14 @@ func _update_string_pull() -> void:
 #function for the grabbing
 func _toggle_grab() -> void:
 	if held_cube:
+		held_cube.remove_collision_exception_with(self)
 		held_cube.drop(held_cube.linear_velocity)
 		held_cube = null
 	else:
 		for body in grab_area.get_overlapping_bodies():
 			if body.is_in_group("grabbable") and body.has_method("pick_up"):
 				held_cube = body
+				held_cube.add_collision_exception_with(self)
 				held_cube.pick_up()
 				break
 
@@ -74,5 +76,6 @@ func deactivate() -> void:
 	is_possession_active = false
 	velocity = Vector2.ZERO
 	if held_cube:
+		held_cube.remove_collision_exception_with(self)
 		held_cube.drop()
 		held_cube = null

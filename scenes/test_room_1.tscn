@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bqoh4vgpy45bg" path="res://scenes/p_wisp_1.tscn" id="3_b3feg"]
 [ext_resource type="PackedScene" uid="uid://bl14nl3swp7bg" path="res://scenes/cube.tscn" id="4_y1xi4"]
 [ext_resource type="PackedScene" uid="uid://c125gp1vxyfqk" path="res://scenes/button.tscn" id="5_4w6er"]
+[ext_resource type="Script" uid="uid://dktha2a2ar0rc" path="res://scenes/hint_label.gd" id="6_ywmsb"]
 
 [node name="Test-room-1" type="Node2D" unique_id=666409738]
 
@@ -27,3 +28,15 @@ position = Vector2(353, 375)
 
 [node name="Button" parent="." unique_id=547445526 instance=ExtResource("5_4w6er")]
 position = Vector2(86, 419)
+
+[node name="HintLabel" type="Label" parent="Button" unique_id=2089238992]
+visible = false
+offset_left = -59.0
+offset_top = -55.0
+offset_right = 58.0
+offset_bottom = -32.0
+text = "BUTTON PRESS"
+script = ExtResource("6_ywmsb")
+
+[connection signal="pressed" from="Button" to="Button/HintLabel" method="_on_button_pressed"]
+[connection signal="released" from="Button" to="Button/HintLabel" method="_on_button_released"]
