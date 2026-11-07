@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://j1n4wygrpv8u"]
+
+[ext_resource type="PackedScene" uid="uid://si75wk503pqq" path="res://scenes/p_body_1.tscn" id="1_mofoo"]
+[ext_resource type="PackedScene" uid="uid://cl0ci1g57b8s5" path="res://scenes/lvl_geom.tscn" id="2_nr3cb"]
+[ext_resource type="PackedScene" uid="uid://bqoh4vgpy45bg" path="res://scenes/p_wisp_1.tscn" id="3_j60wy"]
+
+[node name="Test-room-1" type="Node2D" unique_id=666409738]
+
+[node name="p-body-1" parent="." unique_id=2086028748 instance=ExtResource("1_mofoo")]
+position = Vector2(70, 24)
+
+[node name="StaticBody2D" parent="." unique_id=589681334 instance=ExtResource("2_nr3cb")]
+position = Vector2(200, 161)
+scale = Vector2(10, 1)
+
+[node name="StaticBody2D2" parent="." unique_id=316171290 instance=ExtResource("2_nr3cb")]
+position = Vector2(561, 300)
+scale = Vector2(10, 1)
+
+[node name="p-wisp-1" parent="." unique_id=248650386 instance=ExtResource("3_j60wy")]
+position = Vector2(646, 241)

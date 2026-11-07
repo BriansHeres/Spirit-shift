@@ -6,6 +6,12 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yf5fn"]
+size = Vector2(24, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_57qmd"]
+size = Vector2(30, 28)
+
 [node name="p-wisp-1" type="CharacterBody2D" unique_id=248650386]
 script = ExtResource("1_27xi6")
 
@@ -16,3 +22,13 @@ shape = SubResource("RectangleShape2D_g4v7s")
 modulate = Color(0.84313726, 0.43529412, 1, 0.09803922)
 scale = Vector2(20, 20)
 mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="MeetArea" type="Area2D" parent="." unique_id=356193026]
+
+[node name="MeetShape" type="CollisionShape2D" parent="MeetArea" unique_id=858097415]
+shape = SubResource("RectangleShape2D_yf5fn")
+
+[node name="GrabArea" type="Area2D" parent="." unique_id=1188452019]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabArea" unique_id=772991011]
+shape = SubResource("RectangleShape2D_57qmd")

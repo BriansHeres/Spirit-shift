@@ -3,20 +3,22 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+const GROUND_FRICTION = 800.0
 
 @onready var camera: Camera2D = $Camera2D
 
-# --- Camera tuning ---
 @export var camera_smoothing_enabled: bool = true
 @export var camera_smoothing_speed: float = 5.0
 @export var default_zoom: Vector2 = Vector2(1.0, 1.0)
+@export var wisp_node_path: NodePath
 
-# --- Screen shake ---
 var shake_strength: float = 0.0
 var shake_decay: float = 5.0
+var is_possessed_active: bool = true
 
 func _ready() -> void:
-	PossessionManager.shared_camera = $p_body_1/Camera2D
+	PossessionManager.shared_camera = camera
+	PossessionManager.current_body = self
 	camera.make_current()
 	camera.process_callback = Camera2D.CAMERA2D_PROCESS_PHYSICS
 	camera.position_smoothing_enabled = camera_smoothing_enabled
@@ -24,28 +26,43 @@ func _ready() -> void:
 	camera.zoom = default_zoom
 
 func shift_form():
-	PossessionManager.shift_to(get_node("/root/Test-room-1/p-wisp-1"))
+	var target := get_node(wisp_node_path) if wisp_node_path != NodePath("") else get_node("../p-wisp-1")
+	PossessionManager.shift_to(target)
+	
+func activate(camera_ref: Camera2D) -> void:
+	is_possessed_active = true
+	var old_parent = camera_ref.get_parent()
+	if old_parent:
+		old_parent.remove_child(camera_ref)
+		
+	add_child(camera_ref)
+	camera_ref.make_current()
+
+func deactivate() -> void:
+	is_possessed_active = false
 
 func _physics_process(delta: float) -> void:
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	#Handle Possession
+	if is_possessed_active:
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	# Handle shifting
-	if Input.is_action_just_pressed("shift"):
-		shift_form()
-		
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var direction := Input.get_axis("left", "right")
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+			if is_on_floor():
+				velocity.x = move_toward(velocity.x, 0, GROUND_FRICTION * delta)
 
 	move_and_slide()
 

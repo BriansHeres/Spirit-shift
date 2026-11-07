@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c125gp1vxyfqk"]
+
+[ext_resource type="Script" uid="uid://iiqw4sgvaxek" path="res://button.gd" id="1_mi6dp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[node name="Button" type="Node2D" unique_id=547445526]
+script = ExtResource("1_mi6dp")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=231674697]
+position = Vector2(0, 2.9999998)
+scale = Vector2(20, 14)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1460614800]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1809416500]
+shape = SubResource("RectangleShape2D_g4v7s")

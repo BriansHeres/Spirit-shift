@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bl14nl3swp7bg"]
+
+[ext_resource type="Script" uid="uid://c45g28l1wtgn0" path="res://scripts/grabbable_cube.gd" id="1_7ufek"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+
+[node name="Cube" type="RigidBody2D" unique_id=1442811000 groups=["grabbable"]]
+script = ExtResource("1_7ufek")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=837485653]
+modulate = Color(0, 0.49803922, 0, 1)
+scale = Vector2(20, 20)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1395736155]
+shape = SubResource("RectangleShape2D_g4v7s")
